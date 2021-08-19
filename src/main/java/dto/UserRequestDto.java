@@ -5,7 +5,6 @@ import lombok.Getter;
 @Getter
 public class UserRequestDto {
     private Long userId;
-    private String name;
     private String choose1;
     private String choose2;
     private String choose3;
