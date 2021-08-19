@@ -1,10 +1,10 @@
-package service;
+package com.sparta.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import domain.Choice;
-import repository.ChoiceRepository;
+import com.sparta.domain.Choice;
+import com.sparta.repository.ChoiceRepository;
 
 @Service
 public class ChoiceService {

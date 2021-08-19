@@ -1,10 +1,10 @@
-package service;
+package com.sparta.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import domain.Question;
-import repository.QuestionRepository;
+import com.sparta.domain.Question;
+import com.sparta.repository.QuestionRepository;
 
 @Service
 public class QuestionService {
@@ -19,8 +19,8 @@ public class QuestionService {
         this.questionRepository = questionRepository;
     }
 
-    public Question getQuestions(Long id) {
-    	Question question= questionRepository.findAllById(id);
+    public Question getQuestions(int id) {
+    	Question question= questionRepository.findById(id);
         return question;
     }
 }

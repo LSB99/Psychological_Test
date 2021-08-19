@@ -1,4 +1,4 @@
-package domain;
+package com.sparta.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;

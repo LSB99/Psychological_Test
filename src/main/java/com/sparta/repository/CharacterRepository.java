@@ -1,8 +1,8 @@
-package repository;
+package com.sparta.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import domain.Character;
+import com.sparta.domain.Character;
 
 public interface CharacterRepository extends JpaRepository<Character, Long> {
 

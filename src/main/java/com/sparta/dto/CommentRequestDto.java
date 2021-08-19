@@ -1,9 +1,9 @@
-package dto;
+package com.sparta.dto;
 
 import lombok.Getter;
 
 @Getter
 public class CommentRequestDto {
-    private Long userId;
+    private String userName;
     private String body;
 }

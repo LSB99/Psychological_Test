@@ -1,4 +1,4 @@
-package domain;
+package com.sparta.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -6,7 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import dto.CharacterRequestDto;
+import com.sparta.dto.CharacterRequestDto;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
