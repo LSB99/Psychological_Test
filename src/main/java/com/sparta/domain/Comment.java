@@ -15,9 +15,9 @@ import lombok.NoArgsConstructor;
 @Getter
 @Entity // 테이블과 연계됨을 스프링에게 알려줍니다.
 public class Comment extends Timestamped{
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
-    private Long id;
+    private int id;
 
     @Column(nullable = false)
     private String userName;

@@ -7,4 +7,6 @@ public class CharacterRequestDto {
     private String character;
     private String image;
     private String body;
+    private String good;
+    private String bad;
 }

@@ -6,8 +6,6 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
-import com.sparta.dto.CharacterRequestDto;
-
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -28,15 +26,9 @@ public class Character { // 생성,수정 시간을 자동으로 만들어줍니
     @Column(nullable = false)
     private String body;
 
+    @Column(nullable = false)
+    private String good;
 
-    public Character(String character, String image, String body) {
-        this.character = character;
-        this.image = image;
-        this.body = body;
-    }
-    public Character(CharacterRequestDto requestDto) {
-        this.character = requestDto.getCharacter();
-        this.image = requestDto.getImage();
-        this.body = requestDto.getBody();
-    }
+    @Column(nullable = false)
+    private String bad;
 }

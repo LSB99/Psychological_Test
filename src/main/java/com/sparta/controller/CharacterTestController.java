@@ -35,47 +35,48 @@ public class CharacterTestController {
     private final CommentRepository commentRepository;
     private final CommentService commentService;
 
-    @GetMapping("/api/questions")
-    public List<Question> getAllQuestion() {
-    	return questionRepository.findAll();
-    }
-
+    //모든 선택지에 관한 캐릭터 가져오기
     @RequestMapping("api/choices")
     public @ResponseBody List<Choice> getAllChoices() {
     	return choiceRepository.findAll();
     }
 
+    //모든 질문에 대한 선택지 가져오기
+    @GetMapping("/api/questions")
+    public List<Question> getAllQuestion() {
+    	return questionRepository.findAll();
+    }
 
+    //특정 질문에 대한 선택지 가져오기
 	@GetMapping("/api/questions/{id}")
     public Question getQuestion(@PathVariable int id) {
     	return questionRepository.findById(id);
-
     }
 
+	//댓글 쓰기 기능
 	@PostMapping("/api/comments")
 	public Comment createComment(@RequestBody CommentRequestDto requestDto) {
 		Comment comment = new Comment(requestDto);
 		return commentRepository.save(comment);
 	}
 
+	//모든 댓글 가져오기
 	@GetMapping("/api/comments")
 	public List<Comment> getComments() {
 		return commentRepository.findAllByOrderByModifiedAtDesc();
 	}
 
+	//댓글 수정하기
 	@PutMapping("/api/comments/{id}")
-	public Long updateComment(@PathVariable Long id, @RequestBody CommentRequestDto requestDto) {
+	public int updateComment(@PathVariable Integer id, @RequestBody CommentRequestDto requestDto) {
 		commentService.update(id, requestDto);
 		return id;
 	}
 
-
+	//댓글 삭제하기
 	@DeleteMapping("/api/comments/{id}")
-	public Long deleteComment(@PathVariable Long id) {
+	public int deleteComment(@PathVariable Integer id) {
 		commentRepository.deleteById(id);
 		return id;
 	}
-
-
-
 }
