@@ -25,7 +25,6 @@ const QnA = (props) => {
                 <NextIcon
                     src={img2}
                     onClick={() => {
-                    props.history.push("/Comment");
                 }}
                 />
             </div>
