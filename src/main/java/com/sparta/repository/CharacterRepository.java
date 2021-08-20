@@ -6,4 +6,5 @@ import com.sparta.domain.Character;
 
 public interface CharacterRepository extends JpaRepository<Character, Long> {
 
+	Character findById(int i);
 }
