@@ -8,7 +8,7 @@ import com.sparta.repository.ManycharacterRepository;
 
 @Service
 public class ManycharacterService {
-	
+
 	private final ManycharacterRepository manycharacterRepository;
 
     // 생성자: QuestionService() 가 생성될 때 호출됨
@@ -18,8 +18,8 @@ public class ManycharacterService {
         this.manycharacterRepository = manycharacterRepository;
     }
 
-    public Manycharacter getManycharacters(int id) {
-    	Manycharacter manycharacter= manycharacterRepository.findById(id);
+    public Manycharacter getManycharacters(String character) {
+    	Manycharacter manycharacter= manycharacterRepository.findByCharacter(character);
         return manycharacter;
     }
 

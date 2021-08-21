@@ -4,7 +4,7 @@ import './App.css';
 function App () {
 const [message, setMessage] = useState("");
 useEffect(() => {
-fetch('/api/questions')
+fetch('/api/choices')
 .then(response => response.text())
 .then(message => {
 setMessage(message);

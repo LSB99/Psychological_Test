@@ -4,7 +4,7 @@ import lombok.Getter;
 
 @Getter
 public class UserRequestDto {
-    private Long userId;
+    private String userName;
     private String choose1;
     private String choose2;
     private String choose3;
@@ -13,5 +13,5 @@ public class UserRequestDto {
     private String choose6;
     private String choose7;
     private String choose8;
-    private String character;
+    private String manycharacter;
 }

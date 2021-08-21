@@ -15,12 +15,12 @@ import lombok.NoArgsConstructor;
 @Getter
 @Entity // 테이블과 연계됨을 스프링에게 알려줍니다.
 public class User {
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
 
     @Column(nullable = false)
-    private Long userId;
+    private String userName;
 
     @Column(nullable = true)
     private String choose1;
@@ -47,11 +47,11 @@ public class User {
     private String choose8;
 
     @Column(nullable = true)
-    private String character;
+    private String manycharacter;
 
 
-    public User(Long userId, String choose1, String choose2, String choose3, String choose4, String choose5, String choose6, String choose7, String choose8, String character) {
-        this.userId = userId;
+    public User(String userName, String choose1, String choose2, String choose3, String choose4, String choose5, String choose6, String choose7, String choose8, String manycharacter) {
+        this.userName = userName;
         this.choose1 = choose1;
         this.choose2 = choose2;
         this.choose3 = choose3;
@@ -60,10 +60,10 @@ public class User {
         this.choose6 = choose6;
         this.choose7 = choose7;
         this.choose8 = choose8;
-        this.character = character;
+        this.manycharacter = manycharacter;
     }
     public User(UserRequestDto requestDto) {
-        this.userId = requestDto.getUserId();
+        this.userName = requestDto.getUserName();
         this.choose1 = requestDto.getChoose1();
         this.choose2 = requestDto.getChoose2();
         this.choose3 = requestDto.getChoose3();
@@ -72,6 +72,19 @@ public class User {
         this.choose6 = requestDto.getChoose6();
         this.choose7 = requestDto.getChoose7();
         this.choose8 = requestDto.getChoose8();
-        this.character = requestDto.getCharacter();
+        this.manycharacter = requestDto.getManycharacter();
+    }
+
+    public void update(UserRequestDto requestDto) {
+    	this.userName = requestDto.getUserName();
+        this.choose1 = requestDto.getChoose1();
+        this.choose2 = requestDto.getChoose2();
+        this.choose3 = requestDto.getChoose3();
+        this.choose4 = requestDto.getChoose4();
+        this.choose5 = requestDto.getChoose5();
+        this.choose6 = requestDto.getChoose6();
+        this.choose7 = requestDto.getChoose7();
+        this.choose8 = requestDto.getChoose8();
+        this.manycharacter = requestDto.getManycharacter();
     }
 }

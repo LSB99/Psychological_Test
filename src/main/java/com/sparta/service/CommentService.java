@@ -15,11 +15,9 @@ import lombok.RequiredArgsConstructor;
 public class CommentService {
 	private final CommentRepository commentRepository;
 	@Transactional
-	public int update(int id, CommentRequestDto requestDto) {
-		Comment comment = commentRepository.findById(id).orElseThrow(
-		() -> new IllegalArgumentException("아이디가 존재하지 않습니다.")
-		);
+	public String update(String userName, CommentRequestDto requestDto) {
+		Comment comment = commentRepository.findByUserName(userName);
 		comment.update(requestDto);
-		return comment.getId();
+		return comment.getUserName();
 	}
 }
