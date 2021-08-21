@@ -12,10 +12,11 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor // 기본생성자를 만듭니다.
 @Getter
 @Entity // 테이블과 연계됨을 스프링에게 알려줍니다.
-public class Character { // 생성,수정 시간을 자동으로 만들어줍니다.
+public class Manycharacter { // 생성,수정 시간을 자동으로 만들어줍니다.
+	
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
-    private Long id;
+    private int id;
 
     @Column(nullable = false)
     private String character;
@@ -24,11 +25,5 @@ public class Character { // 생성,수정 시간을 자동으로 만들어줍니
     private String image;
 
     @Column(nullable = false)
-    private String body;
-
-    @Column(nullable = false)
-    private String good;
-
-    @Column(nullable = false)
-    private String bad;
+    private String tag;
 }

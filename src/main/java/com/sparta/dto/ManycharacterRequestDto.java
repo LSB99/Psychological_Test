@@ -3,7 +3,7 @@ package com.sparta.dto;
 import lombok.Getter;
 
 @Getter
-public class CharacterRequestDto {
+public class ManycharacterRequestDto {
     private String character;
     private String image;
     private String body;
