@@ -46,6 +46,7 @@ public class CharacterTestController {
 
 
     String currentUserName;
+    String character;
 
     //첫 화면
     @GetMapping("/api/home")
@@ -94,6 +95,104 @@ public class CharacterTestController {
     	return questionRepository.findById(id);
     }
 
+	//결과보기 직전
+	@GetMapping("/api/finish")
+	public String finish() {
+	    return "결과보기";
+	}
+
+	//결과보기 클릭 후 결과 집계하여 user정보 업데이트 하기(구현 중)
+	@PostMapping("/api/finish")
+	public void updateResult() {
+		User user= userRepository.findByUserName(currentUserName);
+		int manggu = 0, jadu=0, inuyasya=0, nojingu=0, piglet=0, tungtungi=0, rupy=0, wudy=0;
+		int max=0;
+		String maxCharacter="맹구";
+
+		String array[]=new String[8];
+		array[0]=user.getChoose1();
+		array[1]=user.getChoose2();
+		array[2]=user.getChoose3();
+		array[3]=user.getChoose4();
+		array[4]=user.getChoose5();
+		array[5]=user.getChoose6();
+		array[6]=user.getChoose7();
+		array[7]=user.getChoose8();
+
+		for(int i=0; i<array.length; i++) {
+			if(array[i]=="맹구")
+				manggu+=1;
+			else if(array[i]=="자두")
+				jadu+=1;
+			else if(array[i]=="이누야샤")
+				inuyasya+=1;
+			else if(array[i]=="노진구")
+				nojingu+=1;
+			else if(array[i]=="피글렛")
+				piglet+=1;
+			else if(array[i]=="퉁퉁이")
+				tungtungi+=1;
+			else if(array[i]=="루피")
+				rupy+=1;
+			else if(array[i]=="우디")
+				wudy+=1;
+		}
+
+		if(max<manggu) {
+			max=manggu;
+			maxCharacter="맹구";
+		}
+
+		if(max<jadu) {
+			max=jadu;
+			maxCharacter="자두";
+		}
+
+		if(max<inuyasya) {
+			max=inuyasya;
+			maxCharacter="이누야샤";
+		}
+
+
+		if(max<nojingu) {
+			max=nojingu;
+			maxCharacter="노진구";
+		}
+
+		if(max<piglet) {
+			max=piglet;
+			maxCharacter="피글렛";
+		}
+
+		if(max<tungtungi) {
+			max=tungtungi;
+			maxCharacter="퉁퉁이";
+		}
+
+		if(max<rupy) {
+			max=rupy;
+			maxCharacter="루피";
+		}
+
+		if(max<wudy) {
+			max=wudy;
+			maxCharacter="우디";
+		}
+
+	    return;
+	}
+
+	//결과 보여주기
+	 @GetMapping("/api/results/{userName}")
+	 public Manycharacter getResult(@PathVariable String userName) {
+	   	User user=userRepository.findByUserName(userName);
+	   	character=user.getManycharacter();
+		return manycharacterRepository.findByCharacter(character);
+	}
+
+
+	//댓글
+
 	//댓글 쓰기 기능
 	@PostMapping("/api/comments")
 	public Comment createComment(@RequestBody CommentRequestDto requestDto) {
@@ -120,18 +219,5 @@ public class CharacterTestController {
 		commentRepository.deleteByUserName(userName);
 		return userName;
 	}
-
-	//모든 캐릭터 가져오기
-	@GetMapping("/api/manycharacters")
-    public List<Manycharacter> getAllCharacter() {
-    	return manycharacterRepository.findAll();
-    }
-
-
-	//특정 캐릭터 가져오기
-	@GetMapping("/api/manycharacters/{character}")
-    public Manycharacter getCharacter(@PathVariable String character) {
-    	return manycharacterRepository.findByCharacter(character);
-    }
 
 }

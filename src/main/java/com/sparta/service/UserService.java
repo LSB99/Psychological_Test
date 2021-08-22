@@ -22,4 +22,11 @@ public class UserService {
 		return user.getUserName();
 	}
 
+	@Transactional
+	public String updateCharacter(String userName, UserRequestDto requestDto) {
+		User user = userRepository.findByUserName(userName);
+		user.update(requestDto);
+		return user.getUserName();
+	}
+
 }
