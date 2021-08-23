@@ -30,7 +30,7 @@ const Comment = (props) => {
 
             <div className="input-container">
                 <CommentInput id="comment-input" placeholder="한줄평을 입력해보세요"/>
-                <OkButton>확인</OkButton>
+                <OkButton type="submit">확인</OkButton>
             </div>
         </div>
     );

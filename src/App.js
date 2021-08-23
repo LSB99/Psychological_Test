@@ -1,6 +1,8 @@
 import React from "react";
 import './App.css';
+import { withRouter } from "react-router";
 import {Route, Switch} from "react-router-dom";
+import { connect } from "react-redux";
 
 import StatusBar from "./StatusBar";
 import QnA from "./QnA";
@@ -12,9 +14,18 @@ import Comment from "./Comment";
 class App extends React.Component {
     constructor(props) {
         super(props);
-
         this.state = {};
+        this.text = React.createRef();
     }
+
+    // componentDidMount() {
+    //     this.props.load();
+    // }
+
+    addCommentList = () => {
+        const new_item = this.text.current.value;
+        this.props.create(new_item);
+    };
 
     render() {
         return (
