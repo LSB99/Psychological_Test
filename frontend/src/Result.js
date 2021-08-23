@@ -12,7 +12,7 @@ const Result = (props) => {
           <h2>
             당신이 닮은 <b>캐릭터는?</b>
           </h2>
-          <img src={img}></img>
+          <img src={img} alt="profile"></img>
           <h2>
             <b>피글렛</b> 입니다.
           </h2>
@@ -24,13 +24,13 @@ const Result = (props) => {
           <Extra>
             <article>
             <p>나와 상극인 캐릭터</p>
-            <img src={img2}></img>
+            <img src={img2} alt="profile"></img>
             <p><b>이누야샤</b></p>
             </article>
 
             <article>
               <p>나와 찰떡궁합 캐릭터</p>
-              <img src={img3}></img>
+              <img src={img3} alt="profile"></img>
               <p><b>맹구</b></p>
             </article>
           </Extra>

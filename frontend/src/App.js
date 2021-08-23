@@ -1,7 +1,8 @@
 import React from "react";
 import './App.css';
 import {Route, BrowserRouter, Switch} from "react-router-dom";
-import {withRouter} from "react-router";
+import {withRouter} from "react-router"; // eslint-disable-line no-unused-vars
+
 
 import StatusBar from "./StatusBar";
 import QnA from "./QnA";
