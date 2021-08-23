@@ -1,7 +1,6 @@
 import React from "react";
 import './App.css';
 import {Route, Switch} from "react-router-dom";
-import {withRouter} from "react-router";
 
 import StatusBar from "./StatusBar";
 import QnA from "./QnA";

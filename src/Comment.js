@@ -3,14 +3,14 @@ import styled from "styled-components";
 import img from "./back.png";
 
 const Comment = (props) => {
-    const goBack = () => {
-        props.history.goBack();
-    };
+
     return (
         <div className="container">
             <div className="back-div">
                 <BackIcon
-                    src={img} onClick={goBack}
+                    src={img} onClick={() => {
+                    props.history.push("/Result")
+                }}
                 />
             </div>
             <div className="comment-title-div">
