@@ -6,6 +6,6 @@ import com.sparta.domain.Manycharacter;
 
 public interface ManycharacterRepository extends JpaRepository<Manycharacter, Long> {
 
-	Manycharacter findByCharacter(String character);
+	Manycharacter findByCharacter(String question);
 
 }

@@ -6,4 +6,5 @@ import com.sparta.domain.Choice;
 
 public interface ChoiceRepository extends JpaRepository<Choice, Long> {
 	Choice findAllById(Long id);
+	Choice findByChoice(String choice);
 }

@@ -45,7 +45,7 @@ public class CharacterTestController {
     private final UserService userService;
 
 
-    String currentUserName;
+    String currentUserName="user2";
     String character;
 
     //첫 화면
@@ -70,7 +70,6 @@ public class CharacterTestController {
     	return userRepository.findAll();
     }
 
-
     //모든 선택지에 관한 캐릭터 가져오기
     @GetMapping("/api/choices")
     public List<Choice> getAllChoices() {
@@ -84,9 +83,9 @@ public class CharacterTestController {
     }
 
     //선지 선택시에 업데이트하기
-    @PostMapping("/api/questions/{userName}")
-   	public String updateUser(@PathVariable String userName, @RequestBody UserRequestDto requestDto) {
-   		return userService.update(userName, requestDto);
+    @PostMapping("/api/questions")
+   	public String updateUser(@RequestBody UserRequestDto requestDto) {
+   		return userService.update(currentUserName, requestDto);
    	}
 
     //특정 질문에 대한 선택지 가져오기
@@ -95,46 +94,52 @@ public class CharacterTestController {
     	return questionRepository.findById(id);
     }
 
+
 	//결과보기 직전
 	@GetMapping("/api/finish")
-	public String finish() {
-	    return "결과보기";
-	}
-
-	//결과보기 클릭 후 결과 집계하여 user정보 업데이트 하기(구현 중)
-	@PostMapping("/api/finish")
-	public void updateResult() {
+	public String updateResult() {
 		User user= userRepository.findByUserName(currentUserName);
+		String choice1 =user.getChoose1();
+   		String choice2 =user.getChoose2();
+   		String choice3 =user.getChoose3();
+   		String choice4 =user.getChoose4();
+   		String choice5 =user.getChoose5();
+   		String choice6 =user.getChoose6();
+   		String choice7 =user.getChoose7();
+   		String choice8 =user.getChoose8();
+
+
 		int manggu = 0, jadu=0, inuyasya=0, nojingu=0, piglet=0, tungtungi=0, rupy=0, wudy=0;
 		int max=0;
-		String maxCharacter="맹구";
+		String maxCharacter="";
+
 
 		String array[]=new String[8];
-		array[0]=user.getChoose1();
-		array[1]=user.getChoose2();
-		array[2]=user.getChoose3();
-		array[3]=user.getChoose4();
-		array[4]=user.getChoose5();
-		array[5]=user.getChoose6();
-		array[6]=user.getChoose7();
-		array[7]=user.getChoose8();
+		array[0]=(choiceRepository.findByChoice(choice1)).getCharacter1();
+		array[1]=(choiceRepository.findByChoice(choice2)).getCharacter1();
+		array[2]=(choiceRepository.findByChoice(choice3)).getCharacter1();
+		array[3]=(choiceRepository.findByChoice(choice4)).getCharacter1();
+		array[4]=(choiceRepository.findByChoice(choice5)).getCharacter1();
+		array[5]=(choiceRepository.findByChoice(choice6)).getCharacter1();
+		array[6]=(choiceRepository.findByChoice(choice7)).getCharacter1();
+		array[7]=(choiceRepository.findByChoice(choice8)).getCharacter1();
 
 		for(int i=0; i<array.length; i++) {
-			if(array[i]=="맹구")
+			if(array[i].equals("맹구"))
 				manggu+=1;
-			else if(array[i]=="자두")
+			else if(array[i].equals("자두"))
 				jadu+=1;
-			else if(array[i]=="이누야샤")
+			else if(array[i].equals("이누야샤"))
 				inuyasya+=1;
-			else if(array[i]=="노진구")
+			else if(array[i].equals("노진구"))
 				nojingu+=1;
-			else if(array[i]=="피글렛")
+			else if(array[i].equals("피글렛"))
 				piglet+=1;
-			else if(array[i]=="퉁퉁이")
+			else if(array[i].equals("퉁퉁이"))
 				tungtungi+=1;
-			else if(array[i]=="루피")
+			else if(array[i].equals("루피"))
 				rupy+=1;
-			else if(array[i]=="우디")
+			else if(array[i].equals("우디"))
 				wudy+=1;
 		}
 
@@ -178,14 +183,26 @@ public class CharacterTestController {
 			max=wudy;
 			maxCharacter="우디";
 		}
+		UserRequestDto requestDto=new UserRequestDto();
+		requestDto.setChoose1(choice1);
+		requestDto.setChoose2(choice2);
+		requestDto.setChoose3(choice3);
+		requestDto.setChoose4(choice4);
+		requestDto.setChoose5(choice5);
+		requestDto.setChoose6(choice6);
+		requestDto.setChoose7(choice7);
+		requestDto.setChoose8(choice8);
+		requestDto.setManycharacter(maxCharacter);
+		requestDto.setUserName(currentUserName);
 
-	    return;
+		userService.update(currentUserName, requestDto);
+		return maxCharacter;
 	}
 
 	//결과 보여주기
-	 @GetMapping("/api/results/{userName}")
-	 public Manycharacter getResult(@PathVariable String userName) {
-	   	User user=userRepository.findByUserName(userName);
+	 @GetMapping("/api/results")
+	 public Manycharacter getResult() {
+	   	User user=userRepository.findByUserName(currentUserName);
 	   	character=user.getManycharacter();
 		return manycharacterRepository.findByCharacter(character);
 	}
